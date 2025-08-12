@@ -1,7 +1,7 @@
 // src/app/page.tsx
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Home, Save, Star, Navigation } from 'lucide-react';
 import { LatLngExpression } from 'leaflet';
 

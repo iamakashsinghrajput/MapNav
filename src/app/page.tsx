@@ -533,22 +533,22 @@ export default function Home_Page() {
     };
 
     return (
-        <main className="flex h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+        <main className="flex flex-col lg:flex-row h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
             {/* Left Sidebar - Search Interface */}
-            <div className="w-96 bg-white shadow-xl border-r border-gray-200 flex flex-col">
+            <div className="w-full lg:w-96 bg-white shadow-xl border-b lg:border-b-0 lg:border-r border-gray-200 flex flex-col max-h-[40vh] lg:max-h-none overflow-y-auto lg:overflow-y-visible">
                 {/* Header */}
-                <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6">
-                    <h1 className="text-2xl font-bold flex items-center gap-2">
-                        <Navigation size={28} />
+                <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-4 lg:p-6">
+                    <h1 className="text-xl lg:text-2xl font-bold flex items-center gap-2">
+                        <Navigation size={24} className="lg:w-7 lg:h-7" />
                         MapNav
                     </h1>
-                    <p className="text-blue-100 text-sm mt-1">Find your way anywhere</p>
+                    <p className="text-blue-100 text-xs lg:text-sm mt-1">Find your way anywhere</p>
                 </div>
 
                 {/* Search Section */}
-                <div className="p-6 flex-1 overflow-y-auto">
+                <div className="p-3 lg:p-6 flex-1 overflow-y-auto">
                     {/* Enhanced Search Bar */}
-                    <div className="relative mb-6">
+                    <div className="relative mb-4 lg:mb-6">
                         <form onSubmit={handleSearchSubmit}>
                             <div className="relative">
                                 <input
@@ -559,10 +559,10 @@ export default function Home_Page() {
                                         if (searchSuggestions.length > 0) setShowSuggestions(true);
                                     }}
                                     placeholder="Where do you want to go?"
-                                    className="w-full px-4 py-4 pl-12 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg shadow-sm transition-all text-gray-800 placeholder-gray-500"
+                                    className="w-full px-3 py-3 pl-10 lg:px-4 lg:py-4 lg:pl-12 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base lg:text-lg shadow-sm transition-all text-gray-800 placeholder-gray-500"
                                 />
-                                <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-                                    <Navigation size={20} className="text-gray-400" />
+                                <div className="absolute left-3 lg:left-4 top-1/2 transform -translate-y-1/2">
+                                    <Navigation size={18} className="lg:w-5 lg:h-5 text-gray-400" />
                                 </div>
                                 {isSearching && (
                                     <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
@@ -574,20 +574,20 @@ export default function Home_Page() {
                                 <button
                                     type="submit"
                                     disabled={!searchQuery.trim() || isSearching}
-                                    className="flex-1 px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-xl hover:from-blue-600 hover:to-indigo-600 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed font-semibold transition-all shadow-md"
+                                    className="flex-1 px-4 py-2.5 lg:px-6 lg:py-3 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-xl hover:from-blue-600 hover:to-indigo-600 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed font-semibold transition-all shadow-md text-sm lg:text-base"
                                 >
                                     Search Location
                                 </button>
                             </div>
                             
                             {/* Route Type Selector */}
-                            <div className="mt-4">
-                                <label className="text-sm font-medium text-gray-700 mb-2 block">Route Type</label>
+                            <div className="mt-3 lg:mt-4">
+                                <label className="text-xs lg:text-sm font-medium text-gray-700 mb-2 block">Route Type</label>
                                 <div className="flex bg-gray-100 rounded-lg p-1">
                                     <button
                                         type="button"
                                         onClick={() => setRouteType('road')}
-                                        className={`flex-1 px-4 py-2 rounded-md font-medium text-sm transition-all ${
+                                        className={`flex-1 px-2 py-2 lg:px-4 lg:py-2 rounded-md font-medium text-xs lg:text-sm transition-all ${
                                             routeType === 'road'
                                                 ? 'bg-white text-blue-600 shadow-sm'
                                                 : 'text-gray-600 hover:text-gray-800'
@@ -598,7 +598,7 @@ export default function Home_Page() {
                                     <button
                                         type="button"
                                         onClick={() => setRouteType('walking')}
-                                        className={`flex-1 px-4 py-2 rounded-md font-medium text-sm transition-all ${
+                                        className={`flex-1 px-2 py-2 lg:px-4 lg:py-2 rounded-md font-medium text-xs lg:text-sm transition-all ${
                                             routeType === 'walking'
                                                 ? 'bg-white text-green-600 shadow-sm'
                                                 : 'text-gray-600 hover:text-gray-800'
@@ -612,22 +612,22 @@ export default function Home_Page() {
 
                         {/* Search Suggestions Dropdown */}
                         {showSuggestions && searchSuggestions.length > 0 && (
-                            <div className="absolute top-full left-0 right-0 mt-2 bg-white border-2 border-gray-200 rounded-xl shadow-lg z-30 max-h-60 overflow-y-auto">
+                            <div className="absolute top-full left-0 right-0 mt-2 bg-white border-2 border-gray-200 rounded-xl shadow-lg z-30 max-h-48 lg:max-h-60 overflow-y-auto">
                                 {searchSuggestions.map((suggestion) => (
                                     <button
                                         key={suggestion.place_id}
                                         onClick={() => handleSuggestionSelect(suggestion)}
-                                        className="w-full text-left px-4 py-3 hover:bg-blue-50 border-b border-gray-100 last:border-b-0 focus:outline-none focus:bg-blue-50 transition-colors"
+                                        className="w-full text-left px-3 py-2.5 lg:px-4 lg:py-3 hover:bg-blue-50 border-b border-gray-100 last:border-b-0 focus:outline-none focus:bg-blue-50 transition-colors"
                                     >
-                                        <div className="flex items-start gap-3">
+                                        <div className="flex items-start gap-2 lg:gap-3">
                                             <div className="flex-shrink-0 mt-1">
-                                                <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                                                <div className="w-2.5 h-2.5 lg:w-3 lg:h-3 bg-blue-500 rounded-full"></div>
                                             </div>
                                             <div>
-                                                <div className="font-semibold text-gray-900">
+                                                <div className="font-semibold text-gray-900 text-sm lg:text-base">
                                                     {suggestion.display_name.split(',')[0]}
                                                 </div>
-                                                <div className="text-sm text-gray-500 mt-1">
+                                                <div className="text-xs lg:text-sm text-gray-500 mt-1">
                                                     {suggestion.display_name.split(',').slice(1, 3).join(',').trim()}
                                                 </div>
                                             </div>
@@ -640,21 +640,21 @@ export default function Home_Page() {
 
                     {/* Recent Searches */}
                     {recentSearches.length > 0 && !showSuggestions && !searchQuery && (
-                        <div className="mb-6">
-                            <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                        <div className="mb-4 lg:mb-6">
+                            <h3 className="text-base lg:text-lg font-semibold text-gray-800 mb-2 lg:mb-3 flex items-center gap-2">
                                 <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
                                 Recent Searches
                             </h3>
-                            <div className="space-y-2">
+                            <div className="space-y-1.5 lg:space-y-2">
                                 {recentSearches.map((search, index) => (
                                     <button
                                         key={index}
                                         onClick={() => handleRecentSearchSelect(search)}
-                                        className="w-full text-left px-4 py-3 bg-gradient-to-r from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 text-gray-700 rounded-lg transition-all border border-purple-100 hover:border-purple-200"
+                                        className="w-full text-left px-3 py-2.5 lg:px-4 lg:py-3 bg-gradient-to-r from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 text-gray-700 rounded-lg transition-all border border-purple-100 hover:border-purple-200"
                                     >
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                                            <span className="font-medium">{search}</span>
+                                        <div className="flex items-center gap-2 lg:gap-3">
+                                            <div className="w-1.5 h-1.5 lg:w-2 lg:h-2 bg-purple-400 rounded-full"></div>
+                                            <span className="font-medium text-sm lg:text-base">{search}</span>
                                         </div>
                                     </button>
                                 ))}
@@ -664,12 +664,12 @@ export default function Home_Page() {
 
                     {/* Popular Destinations */}
                     {!showSuggestions && !searchQuery && recentSearches.length === 0 && (
-                        <div className="mb-6">
-                            <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                        <div className="mb-4 lg:mb-6">
+                            <h3 className="text-base lg:text-lg font-semibold text-gray-800 mb-2 lg:mb-3 flex items-center gap-2">
                                 <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                                 Popular Destinations
                             </h3>
-                            <div className="grid grid-cols-1 gap-2">
+                            <div className="grid grid-cols-1 gap-1.5 lg:gap-2">
                                 {['Red Fort', 'India Gate', 'Restaurants nearby', 'Petrol pumps nearby', 'Hotels nearby', 'Coffee shops'].map((place) => (
                                     <button
                                         key={place}
@@ -677,11 +677,11 @@ export default function Home_Page() {
                                             setSearchQuery(place);
                                             handleSearch(place);
                                         }}
-                                        className="px-4 py-3 bg-gradient-to-r from-green-50 to-emerald-50 hover:from-green-100 hover:to-emerald-100 text-green-700 rounded-lg font-medium transition-all text-left border border-green-100 hover:border-green-200"
+                                        className="px-3 py-2.5 lg:px-4 lg:py-3 bg-gradient-to-r from-green-50 to-emerald-50 hover:from-green-100 hover:to-emerald-100 text-green-700 rounded-lg font-medium transition-all text-left border border-green-100 hover:border-green-200"
                                     >
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                                            {place}
+                                        <div className="flex items-center gap-2 lg:gap-3">
+                                            <div className="w-1.5 h-1.5 lg:w-2 lg:h-2 bg-green-500 rounded-full"></div>
+                                            <span className="text-sm lg:text-base">{place}</span>
                                         </div>
                                     </button>
                                 ))}
@@ -701,34 +701,34 @@ export default function Home_Page() {
 
                     {/* Route Info & Save Button */}
                     {(routeInfo && endPointInfo) || (isCalculatingRoute && endPointInfo) ? (
-                        <div className="mb-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border-2 border-blue-100">
+                        <div className="mb-4 lg:mb-6 p-3 lg:p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border-2 border-blue-100">
                             {isCalculatingRoute ? (
-                                <div className="flex items-center gap-3">
-                                    <div className="animate-spin rounded-full h-6 w-6 border-2 border-blue-500 border-t-transparent"></div>
+                                <div className="flex items-center gap-2 lg:gap-3">
+                                    <div className="animate-spin rounded-full h-5 w-5 lg:h-6 lg:w-6 border-2 border-blue-500 border-t-transparent"></div>
                                     <div>
-                                        <p className="font-semibold text-blue-900">Calculating route...</p>
-                                        <p className="text-sm text-blue-600">to {endPointInfo.name}</p>
+                                        <p className="font-semibold text-blue-900 text-sm lg:text-base">Calculating route...</p>
+                                        <p className="text-xs lg:text-sm text-blue-600">to {endPointInfo.name}</p>
                                     </div>
                                 </div>
                             ) : routeInfo ? (
-                                <div className="flex items-start justify-between mb-3">
-                                    <div className="flex-1">
+                                <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-2 lg:mb-3">
+                                    <div className="flex-1 mb-3 lg:mb-0">
                                         <div className="flex items-center gap-2 mb-2">
-                                            <div className={`w-3 h-3 ${routeType === 'road' ? 'bg-blue-500' : 'bg-green-500'} rounded-full animate-pulse`}></div>
-                                            <span className={`text-sm font-medium ${routeType === 'road' ? 'text-blue-700' : 'text-green-700'}`}>
+                                            <div className={`w-2.5 h-2.5 lg:w-3 lg:h-3 ${routeType === 'road' ? 'bg-blue-500' : 'bg-green-500'} rounded-full animate-pulse`}></div>
+                                            <span className={`text-xs lg:text-sm font-medium ${routeType === 'road' ? 'text-blue-700' : 'text-green-700'}`}>
                                                 Route by {routeType === 'road' ? 'Road' : 'Walking'}
                                             </span>
                                         </div>
-                                        <h3 className="font-bold text-xl text-blue-900 mb-1">{formatDuration(routeInfo.duration)}</h3>
-                                        <p className="text-blue-700 font-medium">{formatDistance(routeInfo.distance)}</p>
-                                        <p className="text-sm text-blue-600 mt-1">to {endPointInfo.name}</p>
+                                        <h3 className="font-bold text-lg lg:text-xl text-blue-900 mb-1">{formatDuration(routeInfo.duration)}</h3>
+                                        <p className="text-blue-700 font-medium text-sm lg:text-base">{formatDistance(routeInfo.distance)}</p>
+                                        <p className="text-xs lg:text-sm text-blue-600 mt-1">to {endPointInfo.name}</p>
                                         
                                     </div>
                                     <button
                                         onClick={handleSaveLocation}
-                                        className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white font-bold py-2 px-4 rounded-lg flex items-center gap-2 transition-all shadow-md"
+                                        className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white font-bold py-2 px-3 lg:px-4 rounded-lg flex items-center gap-2 transition-all shadow-md text-sm lg:text-base w-full lg:w-auto justify-center"
                                     >
-                                        <Save size={18}/>
+                                        <Save size={16} className="lg:w-[18px] lg:h-[18px]"/>
                                         Save
                                     </button>
                                 </div>
@@ -738,12 +738,12 @@ export default function Home_Page() {
 
                     {/* Saved Locations */}
                     <div>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center gap-2">
-                            <Star size={20} className="text-yellow-500"/>
+                        <h3 className="text-base lg:text-lg font-semibold text-gray-800 mb-2 lg:mb-3 flex items-center gap-2">
+                            <Star size={18} className="lg:w-5 lg:h-5 text-yellow-500"/>
                             Saved Locations
                         </h3>
                         {savedLocations.length > 0 ? (
-                            <div className="space-y-2">
+                            <div className="space-y-1.5 lg:space-y-2">
                                 {savedLocations.map(loc => (
                                     <button
                                         key={loc._id as string}
@@ -751,26 +751,26 @@ export default function Home_Page() {
                                             setEndPoint({ longitude: loc.coordinates.lng, latitude: loc.coordinates.lat });
                                             setEndPointInfo({ name: loc.name, address: loc.address });
                                         }}
-                                        className="w-full text-left px-4 py-3 bg-gradient-to-r from-yellow-50 to-orange-50 hover:from-yellow-100 hover:to-orange-100 text-gray-800 rounded-lg transition-all border border-yellow-100 hover:border-yellow-200"
+                                        className="w-full text-left px-3 py-2.5 lg:px-4 lg:py-3 bg-gradient-to-r from-yellow-50 to-orange-50 hover:from-yellow-100 hover:to-orange-100 text-gray-800 rounded-lg transition-all border border-yellow-100 hover:border-yellow-200"
                                     >
-                                        <div className="flex items-center gap-3">
+                                        <div className="flex items-center gap-2 lg:gap-3">
                                             {loc.name === 'Home' ? 
-                                                <Home size={18} className="text-yellow-600 flex-shrink-0"/> : 
-                                                <Navigation size={18} className="text-yellow-600 flex-shrink-0"/>
+                                                <Home size={16} className="lg:w-[18px] lg:h-[18px] text-yellow-600 flex-shrink-0"/> : 
+                                                <Navigation size={16} className="lg:w-[18px] lg:h-[18px] text-yellow-600 flex-shrink-0"/>
                                             }
-                                            <div>
-                                                <div className="font-semibold text-gray-900">{loc.name}</div>
-                                                <div className="text-sm text-gray-600 truncate">{loc.address}</div>
+                                            <div className="min-w-0 flex-1">
+                                                <div className="font-semibold text-gray-900 text-sm lg:text-base">{loc.name}</div>
+                                                <div className="text-xs lg:text-sm text-gray-600 truncate">{loc.address}</div>
                                             </div>
                                         </div>
                                     </button>
                                 ))}
                             </div>
                         ) : (
-                            <div className="text-center py-6 text-gray-500">
-                                <Star size={48} className="mx-auto mb-2 text-gray-300" />
-                                <p>No locations saved yet</p>
-                                <p className="text-sm">Search and save your favorite places</p>
+                            <div className="text-center py-4 lg:py-6 text-gray-500">
+                                <Star size={32} className="lg:w-12 lg:h-12 mx-auto mb-2 text-gray-300" />
+                                <p className="text-sm lg:text-base">No locations saved yet</p>
+                                <p className="text-xs lg:text-sm">Search and save your favorite places</p>
                             </div>
                         )}
                     </div>
@@ -786,8 +786,8 @@ export default function Home_Page() {
             </div>
 
             {/* Right Side - Map Container */}
-            <div className="flex-1 relative">
-                <div className="h-full w-full rounded-l-2xl overflow-hidden shadow-2xl border border-gray-200">
+            <div className="flex-1 relative min-h-[60vh] lg:min-h-0">
+                <div className="h-full w-full rounded-none lg:rounded-l-2xl overflow-hidden shadow-xl lg:shadow-2xl border-0 lg:border border-gray-200">
                     <MapComponent
                         startPoint={startPoint}
                         endPoint={endPoint}
@@ -798,21 +798,24 @@ export default function Home_Page() {
                 
                 {/* Map overlay info */}
                 {startPoint && (
-                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg p-3 shadow-lg border border-white/50">
-                        <div className="flex items-center gap-2 text-sm text-gray-700">
-                            <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                            Current Location
+                    <div className="absolute top-2 right-2 lg:top-4 lg:right-4 bg-white/90 backdrop-blur-sm rounded-lg p-2 lg:p-3 shadow-lg border border-white/50">
+                        <div className="flex items-center gap-1.5 lg:gap-2 text-xs lg:text-sm text-gray-700">
+                            <div className="w-1.5 h-1.5 lg:w-2 lg:h-2 bg-red-500 rounded-full"></div>
+                            <span className="hidden sm:inline">Current Location</span>
+                            <span className="sm:hidden">Start</span>
                         </div>
                         {endPoint && (
                             <>
-                                <div className="flex items-center gap-2 text-sm text-gray-700 mt-1">
-                                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                                    Destination
+                                <div className="flex items-center gap-1.5 lg:gap-2 text-xs lg:text-sm text-gray-700 mt-1">
+                                    <div className="w-1.5 h-1.5 lg:w-2 lg:h-2 bg-blue-500 rounded-full"></div>
+                                    <span className="hidden sm:inline">Destination</span>
+                                    <span className="sm:hidden">End</span>
                                 </div>
                                 {routeCoordinates && routeCoordinates.length > 2 && (
-                                    <div className="flex items-center gap-2 text-xs text-green-600 mt-1">
-                                        <div className={`w-2 h-1 ${routeType === 'road' ? 'bg-blue-500' : 'bg-green-500'} rounded-full`}></div>
-                                        {routeType === 'road' ? 'Road' : 'Walking'} Route ({routeCoordinates.length} points)
+                                    <div className="flex items-center gap-1.5 lg:gap-2 text-xs text-green-600 mt-1">
+                                        <div className={`w-1.5 h-0.5 lg:w-2 lg:h-1 ${routeType === 'road' ? 'bg-blue-500' : 'bg-green-500'} rounded-full`}></div>
+                                        <span className="hidden sm:inline">{routeType === 'road' ? 'Road' : 'Walking'} Route ({routeCoordinates.length} points)</span>
+                                        <span className="sm:hidden">{routeType === 'road' ? 'Road' : 'Walk'}</span>
                                     </div>
                                 )}
                             </>

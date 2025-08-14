@@ -7,8 +7,9 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "NextNav - Your Navigation App",
-  description: "Find your way with NextNav",
+  title: "MapNav - Your Navigation App",
+  description: "Find your way anywhere with MapNav - responsive navigation app with route planning",
+  viewport: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no",
 };
 
 export default function RootLayout({
